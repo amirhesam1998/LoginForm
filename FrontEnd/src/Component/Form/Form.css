@@ -1,0 +1,19 @@
+/* Form.css */
+
+/* Add Bootstrap classes to style form elements */
+/* For illustration purposes, adjust the styles based on your design needs */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 8px;
+}
+
+button[type="submit"] {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
