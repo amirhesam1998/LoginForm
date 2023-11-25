@@ -3,6 +3,7 @@ from django.contrib.auth.models import (
     AbstractBaseUser,
     PermissionsMixin,
     BaseUserManager,
+    AbstractUser,
 )
 from django.utils.translation import (
     gettext_lazy as _,
@@ -38,7 +39,7 @@ class UserManager(BaseUserManager):
 
     
 
-class User(AbstractBaseUser,PermissionsMixin):
+class User(AbstractUser,PermissionsMixin):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     phone_num = models.CharField(max_length=15)
