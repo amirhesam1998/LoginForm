@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import userData from './userData.json';
 import './Form.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Form (){
     const [formData, setFormData] = useState({
@@ -34,23 +34,40 @@ export default function Form (){
     };
   
     return (
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="firstName" value={userData.firstName} onChange={handleChange} />
-        <input type="text" name="lastName" value={userData.lastName} onChange={handleChange} />
-        <input type="text" name="birthday" value={userData.birthday} onChange={handleChange} />
-        <input type="text" name="phoneNumber" value={userData.phoneNumber} onChange={handleChange} />
-        <input type="email" name="email" value={userData.email} onChange={handleChange} />
-        <input type="text" name="username" value={userData.username} onChange={handleChange} />
-        <input type="password" name="password" value={userData.password} onChange={handleChange} />
-        <input
-          type="password"
-          name="repeatedPassword"
-          value={userData.repeatedPassword}
-          onChange={handleChange}
-        />
-        <button type="submit">Register</button>
-      </form>
-    );
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-md-6">
+              <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} className="form-control" placeholder="First Name" />
+                </div>
+                <div className="form-group">
+                  <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} className="form-control" placeholder="Last Name" />
+                </div>
+                <div className="form-group">
+                  <input type="text" name="birthday" value={formData.birthday} onChange={handleChange} className="form-control" placeholder="Birthday" />
+                </div>
+                <div className="form-group">
+                  <input type="text" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} className="form-control" placeholder="Phone Number" />
+                </div>
+                <div className="form-group">
+                  <input type="email" name="email" value={formData.email} onChange={handleChange} className="form-control" placeholder="Email" />
+                </div>
+                <div className="form-group">
+                  <input type="text" name="username" value={formData.username} onChange={handleChange} className="form-control" placeholder="Username" />
+                </div>
+                <div className="form-group">
+                  <input type="password" name="password" value={formData.password} onChange={handleChange} className="form-control" placeholder="Password" />
+                </div>
+                <div className="form-group">
+                  <input type="password" name="repeatedPassword" value={formData.repeatedPassword} onChange={handleChange} className="form-control" placeholder="Repeat Password" />
+                </div>
+                <button type="submit" className="btn btn-primary">Register</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      )
   };
   
   
