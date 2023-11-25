@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import './Form.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios';
 
 export default function Form (){
     const [formData, setFormData] = useState({
@@ -25,11 +26,11 @@ export default function Form (){
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        console.log('Form Data:', formData);
-        //const response = await axios.post('http://your-django-backend.com/register/', formData);
-        // Handle response, e.g., redirect to another page, show success message, etc.
+        //console.log('Form Data:', formData);
+        const response = await axios.post('http://your-django-backend.com/register/', formData);
+        alert('your information successfully received ')
       } catch (error) {
-        // Handle error
+        alert('your information NOT   successfully received ')
       }
     };
   
