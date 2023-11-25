@@ -1,0 +1,10 @@
+{
+    "firstName": "John",
+    "lastName": "Doe",
+    "birthday": "1990-05-15",
+    "phoneNumber": "1234567890",
+    "email": "john@example.com",
+    "username": "johndoe",
+    "password": "securepassword",
+    "repeatedPassword": "securepassword"
+  }
