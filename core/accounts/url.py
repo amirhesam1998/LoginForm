@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path , include
-from .views import UserCreate
+from .views import RegistrationApiView
 
 urlpatterns = [
-    path('api/login/' , UserCreate.as_view() , name="login-form")
+    path('api/registration/' , RegistrationApiView.as_view() , name="login-form")
 ]
