@@ -37,7 +37,6 @@ export default function Form (){
           email: '',
           username: '',
           password: '',
-          rePassword: '',
         });
       } catch (error) {
         alert('Failed to submit information.');
@@ -69,9 +68,6 @@ export default function Form (){
                 </div>
                 <div className="form-group">
                   <input type="password" name="password" value={formData.password} onChange={handleChange} className="form-control" placeholder="Password" />
-                </div>
-                <div className="form-group">
-                  <input type="password" name="rePassword" value={formData.rePassword} onChange={handleChange} className="form-control" placeholder="Repeat Password" />
                 </div>
                 <button type="submit" className="btn btn-primary">Register</button>
               </form>
