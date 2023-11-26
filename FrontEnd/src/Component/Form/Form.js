@@ -12,7 +12,6 @@ export default function Form (){
       email: '',
       username: '',
       password: '',
-      rePassword: '', // Changed to match your initial state
     });
   
     const handleChange = (e) => {
