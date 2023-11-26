@@ -12,7 +12,7 @@ export default function Form (){
       email: '',
       username: '',
       password: '',
-      re_Password: '',
+      re_Password: '', // Changed to match your initial state
     });
   
     const handleChange = (e) => {
@@ -26,11 +26,10 @@ export default function Form (){
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        //console.log('Form Data:', formData);
-        const response = await axios.post('127.0.0.1:8000/accounts/api/registry', formData);
-        alert('your information successfully received ')
+        const _ = await axios.post('http://127.0.0.1:8000/accounts/api/registry', formData);
+        alert('Your information was successfully received.');
       } catch (error) {
-        alert('your information NOT   successfully received ')
+        alert('Failed to submit information.');
       }
     };
   
@@ -40,16 +39,16 @@ export default function Form (){
             <div className="col-md-6">
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} className="form-control" placeholder="First Name" />
+                  <input type="text" name="first_name" value={formData.first_name} onChange={handleChange} className="form-control" placeholder="First Name" />
                 </div>
                 <div className="form-group">
-                  <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} className="form-control" placeholder="Last Name" />
+                  <input type="text" name="last_name" value={formData.last_name} onChange={handleChange} className="form-control" placeholder="Last Name" />
                 </div>
                 <div className="form-group">
                   <input type="text" name="birthday" value={formData.birthday} onChange={handleChange} className="form-control" placeholder="Birthday" />
                 </div>
                 <div className="form-group">
-                  <input type="text" name="phoneNumber" value={formData.phoneNumber} onChange={handleChange} className="form-control" placeholder="Phone Number" />
+                  <input type="text" name="phone_number" value={formData.phone_number} onChange={handleChange} className="form-control" placeholder="Phone Number" />
                 </div>
                 <div className="form-group">
                   <input type="email" name="email" value={formData.email} onChange={handleChange} className="form-control" placeholder="Email" />
@@ -61,7 +60,7 @@ export default function Form (){
                   <input type="password" name="password" value={formData.password} onChange={handleChange} className="form-control" placeholder="Password" />
                 </div>
                 <div className="form-group">
-                  <input type="password" name="repeatedPassword" value={formData.repeatedPassword} onChange={handleChange} className="form-control" placeholder="Repeat Password" />
+                  <input type="password" name="re_Password" value={formData.re_Password} onChange={handleChange} className="form-control" placeholder="Repeat Password" />
                 </div>
                 <button type="submit" className="btn btn-primary">Register</button>
               </form>
@@ -70,5 +69,3 @@ export default function Form (){
         </div>
       )
   };
-  
-  
