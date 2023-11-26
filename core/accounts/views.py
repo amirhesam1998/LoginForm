@@ -1,35 +1,35 @@
-from django.http import HttpResponse , JsonResponse
-from .serializers import serialize_user , UserProfileSerializer
-from .models import User
-from django.views.decorators.csrf import csrf_exempt
-from django.views import View
-from django.utils.decorators import method_decorator
-from .forms import UserInformation
-from django.views.generic import CreateView
+# from django.http import HttpResponse , JsonResponse
+# from .serializers import serialize_user , UserProfileSerializer
+# from .models import User
+# from django.views.decorators.csrf import csrf_exempt
+# from django.views import View
+# from django.utils.decorators import method_decorator
+# from .forms import UserInformation
+# from django.views.generic import CreateView
 
-def get_user_data(request, user_id):
-    user = User.objects.get(pk=user_id)
-    serialized_user = serialize_user(user)
-    return HttpResponse(serialized_user, content_type='application/json')
+# def get_user_data(request, user_id):
+#     user = User.objects.get(pk=user_id)
+#     serialized_user = serialize_user(user)
+#     return HttpResponse(serialized_user, content_type='application/json')
 
 
-@method_decorator(csrf_exempt, name='dispatch')
-class UserCreateView(View):
-    def post(self, request):
-        data = request.POST
-        print(data)
-        user_profile = User.objects.create(
-            first_name=data.get('first_name'),
-            last_name=data.get('last_name'),
-            birthday=data.get('birthday'),
-            phone_number=data.get('phone_number'),
-            email=data.get('email'),
-            username=data.get('username'),
-            password=data.get('password'),
-        )
+# @method_decorator(csrf_exempt, name='dispatch')
+# class UserCreateView(View):
+#     def post(self, request):
+#         data = request.POST
+#         print(data)
+#         user_profile = User.objects.create(
+#             first_name=data.get('first_name'),
+#             last_name=data.get('last_name'),
+#             birthday=data.get('birthday'),
+#             phone_number=data.get('phone_number'),
+#             email=data.get('email'),
+#             username=data.get('username'),
+#             password=data.get('password'),
+#         )
 
-        serialized_user_profile = UserProfileSerializer.serialize(user_profile)
-        return JsonResponse(serialized_user_profile)
+#         serialized_user_profile = UserProfileSerializer.serialize(user_profile)
+#         return JsonResponse(serialized_user_profile)
 
 # @method_decorator(csrf_exempt, name='dispatch')
 # class UserCreateView(CreateView):
@@ -55,3 +55,15 @@ class UserCreateView(View):
 #             user.save()
 #             serialized_user_profile = UserProfileSerializer.serialize(user)
 #             return JsonResponse(serialized_user_profile)
+
+from rest_framework.generics import CreateAPIView
+from .models import User
+from .serializers import UserSerializer
+
+
+
+class ArticleCreateView(CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
