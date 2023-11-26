@@ -5,14 +5,14 @@ import axios from 'axios';
 
 export default function Form (){
     const [formData, setFormData] = useState({
-      firstName: '',
-      lastName: '',
+      first_name: '',
+      last_name: '',
       birthday: '',
-      phoneNumber: '',
+      phone_number: '',
       email: '',
       username: '',
       password: '',
-      repeatedPassword: '',
+      re_Password: '',
     });
   
     const handleChange = (e) => {
@@ -27,7 +27,7 @@ export default function Form (){
       e.preventDefault();
       try {
         //console.log('Form Data:', formData);
-        const response = await axios.post('http://your-django-backend.com/register/', formData);
+        const response = await axios.post('127.0.0.1:8000/accounts/api/registry', formData);
         alert('your information successfully received ')
       } catch (error) {
         alert('your information NOT   successfully received ')
