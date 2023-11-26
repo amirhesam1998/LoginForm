@@ -25,12 +25,12 @@ export default function Form (){
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        const {response} = await axios.post('http://127.0.0.1:8000/accounts/api/registry/', document.querySelector('formData'),{
+        const response = await axios.post('http://127.0.0.1:8000/accounts/api/registry/', formData,{
           headers: {
             'Content-Type': 'application/json'
           }
         })
-        console.log({response})
+        console.log(response)
       } catch (error) {
         alert('Failed to submit information.');
       }
@@ -62,7 +62,7 @@ export default function Form (){
                 <div className="form-group">
                   <input type="password" name="password" value={formData.password} onChange={handleChange} className="form-control" placeholder="Password" />
                 </div>
-                <button type="submit" className="btn btn-primary">Register</button>
+                <button onClick={handleSubmit} type="submit" className="btn btn-primary">Register</button>
               </form>
             </div>
           </div>
