@@ -8,7 +8,6 @@ class User(models.Model):
     email = models.EmailField(unique=True, blank=True , null=True)
     username = models.CharField(max_length=50, blank=True , null=True)
     password = models.CharField(max_length=100, blank=True , null=True)
-    rePassword =  models.CharField(max_length=100, blank=True , null=True) 
 
     def __str__(self):
         return self.username
