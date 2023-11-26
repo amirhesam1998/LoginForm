@@ -22,26 +22,29 @@ export default function Form (){
       });
     };
   
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      try {
-                const response = await axios.post('http://127.0.0.1:8000/accounts/api/registry/', formData);
-        alert('Your information was successfully received.');
-        // Optionally, you can reset the form after successful submission
-        setFormData({
-          first_name: '',
-          last_name: '',
-          birthday: '',
-          phone_number: '',
-          email: '',
-          username: '',
-          password: '',
-        });
-      } catch (error) {
-        alert('Failed to submit information.');
-      }
-    };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const {data}= await axios.post('127.0.0.1:8000/accounts/api/registry/',{      
+      first_name: '',
+      last_name: '',
+      birthday: '',
+      phone_number: '',
+      email: '',
+      username: '',
+      password: '',
   
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      console.log({data});
+    alert('Your information was successfully received.');
+  } catch (error) {
+    alert('Failed to submit information.'); // alert the user that the information failed to submit
+  }
+};
     return (
         <div className="container">
           <div className="row justify-content-center">
