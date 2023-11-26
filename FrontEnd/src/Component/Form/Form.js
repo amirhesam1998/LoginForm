@@ -3,7 +3,6 @@ import './Form.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 
-const baseURL = 'http://127.0.0.1:8000/accounts/api/registry/'
 
 export default function Form (){
     const [formData, setFormData] = useState({
@@ -24,21 +23,19 @@ export default function Form (){
       });
     };
     
-    React.useEffect(() => {
-      axios.get(`${baseURL}/1`).then((response) => {
-        setFormData(response.data);
-      });
-    }, []);
-
-    function handleSubmit() {
-      axios
-        .put(`${baseURL}/1`, formData)
-        .then((response) => {
-          setPost(response.data);
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        const response = await axios.post('http://127.0.0.1:8000/accounts/api/registry/', formData, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
         });
-    }
-  
-    if (!post) return "No post!"
+        console.log(response.data); // Assuming your response contains useful data
+      } catch (error) {
+        alert('Failed to submit information.');
+      }
+    };
     
     return (
         <div className="container">
