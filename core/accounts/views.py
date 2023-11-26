@@ -16,6 +16,7 @@ def get_user_data(request, user_id):
 class UserCreateView(View):
     def post(self, request):
         data = request.POST
+        print(data)
         user_profile = User.objects.create(
             first_name=data.get('first_name'),
             last_name=data.get('last_name'),
