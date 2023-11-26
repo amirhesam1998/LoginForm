@@ -25,7 +25,7 @@ export default function Form (){
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        const {response} = await axios.post('http://127.0.0.1:8000/accounts/api/registry/', document.querydict(formData),{
+        const {response} = await axios.post('http://127.0.0.1:8000/accounts/api/registry/', document.querySelector('formData'),{
           headers: {
             'Content-Type': 'application/json'
           }
