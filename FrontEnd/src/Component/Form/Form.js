@@ -32,13 +32,13 @@ export default function Form (){
 
     function handleSubmit() {
       axios
-        .put(`${baseURL}/1`, formData)
+        .post(`${baseURL}/1`, formData)
         .then((response) => {
-          setPost(response.data);
+          setFormData(response.data);
         });
     }
   
-    if (!post) return "No post!"
+    
     
     return (
         <div className="container">
