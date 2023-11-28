@@ -11,7 +11,7 @@ class UserCreateView(View):
     def post(self, request):
         data = json.loads(request.body.decode('utf-8'))
         print(data)
-        user_profile = User.objects.create(
+        user_profile = User.objects.create_user(
             first_name=data.get('first_name'),
             last_name=data.get('last_name'),
             birthday=data.get('birthday'),

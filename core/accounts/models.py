@@ -3,11 +3,11 @@ from django.contrib.auth.models import (
     AbstractBaseUser,
     PermissionsMixin,
     BaseUserManager,
-    UserManager as a
 )
 from django.utils.translation import (
     gettext_lazy as _,
 )
+from django.core.validators import EmailValidator
 
 '''
 class User(models.Model):
@@ -22,13 +22,15 @@ class User(models.Model):
     def __str__(self):
         return self.username
 '''
-class UserManager(a):
+class UserManager(BaseUserManager):
     def create_user(self, email, password, **extra_fields):
         """
         Create and save a user with the given email and password.
         """
         if not email:
             raise ValueError(_("the email must be set"))
+        email_validator = EmailValidator()
+        email_validator(email)
         email = self.normalize_email(
             email
         )  # check validation email by normalize_email method in BaseUserManager
@@ -41,12 +43,6 @@ class UserManager(a):
         user.save()
         return user
 
-
-
-def validate_email(self , email):
-    if not email:
-        raise ValueError(_("the email must be set"))
-
     
 
 class User(AbstractBaseUser):
@@ -54,7 +50,7 @@ class User(AbstractBaseUser):
     phone_number = models.CharField(_("phone_number"),max_length=11,)
     first_name = models.CharField(max_length=50 ,)
     last_name = models.CharField(max_length=50,)
-    email = models.EmailField(unique=True ,validators=[validate_email])
+    email = models.EmailField(unique=True)
     username = models.CharField(max_length=50,)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
@@ -66,5 +62,3 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
     objects = UserManager()
-    
-
