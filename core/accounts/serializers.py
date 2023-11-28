@@ -12,11 +12,10 @@
 #         return model_to_dict(user_profile)
 
 from rest_framework import serializers
-
-from .models import User
+from django.forms.models import model_to_dict
 
 
 class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ('first_name', 'last_name', 'birthday' , 'phone_number' , 'email' , 'username' , 'password')
+    @staticmethod
+    def serialize(user_profile):
+        return model_to_dict(user_profile)
