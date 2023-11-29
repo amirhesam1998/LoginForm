@@ -2,17 +2,22 @@ import React, { useState } from "react";
 import './Form.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
+//import Alert from '@mui/material/Alert';
+//import Stack from '@mui/material/Stack';
 
 
 export default function Form (){
     const [formData, setFormData] = useState({
       first_name: '',
       last_name: '',
-      birthday: '',
+      year: '',
+      month: '',
+      day: '',
       phone_number: '',
       email: '',
       username: '',
       password: '',
+      rePassword: '',
     });
   
     const handleChange = (e) => {
@@ -31,24 +36,34 @@ export default function Form (){
                 'Content-Type': 'application/json'
               }
             });
-            alert('information were submited ');
+            <div className="alert alert-success">
+              <strong>Success!</strong>
+            </div>
           } catch (error) {
-            alert('Failed to submit information.');
+            alert('this is noth work')
           }
         };
     return (
-        <div className="container alireza">
-          <div className="row justify-content-center">
-            <div className="col-md-6">
+        <div className="container ">
+          <div className="row justify-content-center p-4 ">
+            <div className="col-md-6 alireza p-4">
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <input type="text" name="first_name" value={formData.first_name} onChange={handleChange} className="form-control" placeholder="First Name" />
+                  <input type="text" name="first_name" value={formData.first_name} onChange={handleChange} className="form-control hover" placeholder="First Name" />
                 </div>
                 <div className="form-group">
                   <input type="text" name="last_name" value={formData.last_name} onChange={handleChange} className="form-control" placeholder="Last Name" />
                 </div>
-                <div className="form-group">
-                  <input type="text" name="birthday" value={formData.birthday} onChange={handleChange} className="form-control" placeholder="Birthday" />
+                <div className="form-group row">
+                  <div className="col">
+                    <input type="text" name="birthday" value={formData.year} onChange={handleChange} className="form-control col-md-2" placeholder="year" />
+                  </div>
+                  <div className="col">
+                    <input type="text" name="birthday" value={formData.month} onChange={handleChange} className="form-control col-md-2" placeholder="mouth" /> 
+                  </div >  
+                  <div className="col">
+                    <input type="text" name="birthday" value={formData.day} onChange={handleChange} className="form-control col-md-2" placeholder="day" />
+                  </div>
                 </div>
                 <div className="form-group">
                   <input type="text" name="phone_number" value={formData.phone_number} onChange={handleChange} className="form-control" placeholder="Phone Number" />
@@ -61,6 +76,9 @@ export default function Form (){
                 </div>
                 <div className="form-group">
                   <input type="password" name="password" value={formData.password} onChange={handleChange} className="form-control" placeholder="Password" />
+                </div>
+                <div className="form-group">
+                  <input type="password" name="password" value={formData.rePassword} onChange={handleChange} className="form-control" placeholder="rePassword" />
                 </div>
                 <button type="submit" className="btn btn-primary">Register</button>
               </form>
