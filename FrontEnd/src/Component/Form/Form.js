@@ -3,22 +3,10 @@ import './Form.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import AlertColors from '../Alert/AlertColors'
-//import Button from '../Button/Button'
+import FormData from '../../data/FormData/FormData.json'
 
-
-export default function Form (){
-    const [formData, setFormData] = useState({
-      first_name: '',
-      last_name: '',
-      year: '',
-      month: '',
-      day: '',
-      phone_number: '',
-      email: '',
-      username: '',
-      password: '',
-      rePassword: '',
-    });
+export default function Form  (){
+    const [formData, setFormData] = useState(FormData);
     const [errorOccurred, setErrorOccurred] = useState(false);
     const [curred, setcurred] = useState(false);
   
@@ -33,7 +21,7 @@ export default function Form (){
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        const response = await axios.post('http://127.0.0.1:8000/accounts/api/registry/', formData, {
+        await axios.post('http://127.0.0.1:8000/accounts/api/registry/', formData, {
           headers: {
             'Content-Type': 'application/json'
           }
@@ -44,7 +32,7 @@ export default function Form (){
       }
     };
     return (
-        <div className="container">
+        <div className="container ">
           <div className="row justify-content-center m-5">
             <div className="col-md-6 alireza p-4 ">
             {errorOccurred && <AlertColors color="red" text="A success alert for showing message." />}
@@ -90,3 +78,4 @@ export default function Form (){
         </div>
       )
   };
+  
