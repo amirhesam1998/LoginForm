@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import './Form.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import { Alert } from "@material-tailwind/react";
+import AlertColors from '../Alert/AlertColors'
+//import Button from '../Button/Button'
 
 
 export default function Form (){
@@ -18,6 +19,8 @@ export default function Form (){
       password: '',
       rePassword: '',
     });
+    const [errorOccurred, setErrorOccurred] = useState(false);
+    const [curred, setcurred] = useState(false);
   
     const handleChange = (e) => {
       const { name, value } = e.target;
@@ -35,17 +38,18 @@ export default function Form (){
             'Content-Type': 'application/json'
           }
         });
-        console.log(response.data); // Assuming your response contains useful data
+        setcurred(true)
       } catch (error) {
-        alert('Failed to submit information.');
+        setErrorOccurred(true)
       }
     };
-    
     return (
         <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-md-6">
-              <form onSubmit={handleSubmit}>
+          <div className="row justify-content-center m-5">
+            <div className="col-md-6 alireza p-4 ">
+            {errorOccurred && <AlertColors color="red" text="A success alert for showing message." />}
+            {curred && <AlertColors color="red" text="An error alert for showing message." />}
+              <form className="m-2" onSubmit={handleSubmit}>
                 <div className="form-group">
                   <input type="text" name="first_name" value={formData.first_name} onChange={handleChange} className="form-control hover" placeholder="First Name" />
                 </div>
@@ -75,7 +79,11 @@ export default function Form (){
                 <div className="form-group">
                   <input type="password" name="password" value={formData.password} onChange={handleChange} className="form-control" placeholder="Password" />
                 </div>
+                <div className="form-group">
+                  <input type="password" name="password" value={formData.rePassword} onChange={handleChange} className="form-control" placeholder="rePassword" />
+                </div>
                 <button onClick={handleSubmit} type="submit" className="btn btn-primary">Register</button>
+                <button type="button" className="btn btn-warning m-3">Login</button>
               </form>
             </div>
           </div>
