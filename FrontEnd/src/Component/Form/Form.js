@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import './Form.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-//import Alert from '@mui/material/Alert';
-//import Stack from '@mui/material/Stack';
+import { Alert } from "@material-tailwind/react";
 
 
 export default function Form (){
@@ -40,7 +39,9 @@ export default function Form (){
               <strong>Success!</strong>
             </div>
           } catch (error) {
-            alert('this is noth work')
+            <div className="flex w-full flex-col gap-2">
+              <Alert color="green">A success alert for showing message.</Alert>
+            </div>
           }
         };
     return (
