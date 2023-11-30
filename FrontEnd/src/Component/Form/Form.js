@@ -35,19 +35,15 @@ export default function Form (){
                 'Content-Type': 'application/json'
               }
             });
-            <div className="alert alert-success">
-              <strong>Success!</strong>
-            </div>
+            alert('information were submited ');
           } catch (error) {
-            <div className="flex w-full flex-col gap-2">
-              <Alert color="green">A success alert for showing message.</Alert>
-            </div>
+            alert('Failed to submit information.');
           }
         };
     return (
-        <div className="container ">
-          <div className="row justify-content-center p-4 ">
-            <div className="col-md-6 alireza p-4">
+        <div className="container alireza">
+          <div className="row justify-content-center">
+            <div className="col-md-6">
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
                   <input type="text" name="first_name" value={formData.first_name} onChange={handleChange} className="form-control hover" placeholder="First Name" />
@@ -77,9 +73,6 @@ export default function Form (){
                 </div>
                 <div className="form-group">
                   <input type="password" name="password" value={formData.password} onChange={handleChange} className="form-control" placeholder="Password" />
-                </div>
-                <div className="form-group">
-                  <input type="password" name="password" value={formData.rePassword} onChange={handleChange} className="form-control" placeholder="rePassword" />
                 </div>
                 <button type="submit" className="btn btn-primary">Register</button>
               </form>
