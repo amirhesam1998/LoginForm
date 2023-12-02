@@ -10,7 +10,7 @@ import Form from "../Form/Form";
 export default function Register  (){
     const [formData, setFormData] = useState(FormData);
     const [errorOccurred, setErrorOccurred] = useState(false);
-    //const [curred, setcurred] = useState(false);
+    const [curred, setcurred] = useState(false);
   
     const handleChange = (e) => {
       const { name, value } = e.target;
@@ -28,7 +28,7 @@ export default function Register  (){
             'Content-Type': 'application/json'
           }
         });
-        setErrorOccurred(false)
+        setcurred(true)
       } catch (error) {
         setErrorOccurred(true)
       }
@@ -37,7 +37,7 @@ export default function Register  (){
     return (
       <FormGroup>
         {errorOccurred && <AlertColors color="red" text="A success alert for showing message." />}
-        {errorOccurred && <AlertColors color="green" text="An error alert for showing message." />}
+        {curred && <AlertColors color="green" text="An error alert for showing message." />}
         <Form>
           <input type="text" name="first_name" value={formData.first_name} onChange={handleChange} className="form-control hover" placeholder="First Name" />
           <input type="text" name="last_name" value={formData.last_name} onChange={handleChange} className="form-control" placeholder="Last Name" />
