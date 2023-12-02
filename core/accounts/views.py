@@ -1,9 +1,7 @@
-from .serializers import UserSerializer , RegistrationSerializer , CustomAuthTokenSerializer , CustomTokenObtainPairSerializer
+from .serializers import CustomTokenObtainPairSerializer, UserSerializer , RegistrationSerializer , CustomAuthTokenSerializer 
 from rest_framework.response import Response
 from rest_framework import generics
-from django.shortcuts import get_object_or_404 
 from rest_framework import status
-from django.contrib.auth import get_user_model
 from .models import User
 from rest_framework.views import APIView
 from rest_framework import viewsets
@@ -11,11 +9,13 @@ from rest_framework.permissions import IsAuthenticated
 from django.conf import settings
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 
 class UserListApiView(viewsets.ViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
+    permission_classes = [IsAuthenticated]
     
     def list(self,request):
         serializer = self.serializer_class(self.queryset , many = True)
@@ -53,3 +53,5 @@ class UserLogoutToken(APIView):
         request.user.auth_token.delete()
         return Response({'detail':'successfully'},status=status.HTTP_204_NO_CONTENT)
         
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
