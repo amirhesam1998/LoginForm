@@ -1,10 +1,12 @@
-from .models import User
 from .serializers import UserSerializer , RegistrationSerializer
 from rest_framework.response import Response
 from rest_framework import generics
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404 
 from rest_framework import status
+from django.contrib.auth import get_user_model
+from .models import User
 
+from rest_framework import viewsets
 # @method_decorator(csrf_exempt, name='dispatch')
 # class UserCreateView(View):
 #     def post(self, request):
@@ -25,15 +27,25 @@ from rest_framework import status
         
 
 
-class UserListApiView(generics.RetrieveAPIView):
+
+'''class UserListApiView(generics.RetrieveAPIView):
     serializer_class = UserSerializer
     queryset = User.objects.all()
     
     def get_object(self):
         queryset = self.get_queryset()
-        obj = get_object_or_404(queryset , user=self.request.user)
-        return obj
+        print(queryset)
+        obj = get_object_or_404(queryset , User=self.request.user)
+        return obj'''
     
+class UserListApiView(viewsets.ViewSet):
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+    
+    def list(self,request):
+        serializer = self.serializer_class(self.queryset , many = True)
+        print(serializer.data)
+        return Response(serializer.data)
 
 class RegistrationApiView(generics.GenericAPIView):
     serializer_class = RegistrationSerializer
@@ -44,5 +56,6 @@ class RegistrationApiView(generics.GenericAPIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data , status=status.HTTP_201_CREATED )
+        print(serializer.errors)
         return Response(serializer.errors , status=status.HTTP_400_BAD_REQUEST)
 

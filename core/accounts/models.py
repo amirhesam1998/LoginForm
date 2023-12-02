@@ -10,6 +10,9 @@ from django.utils.translation import (
 from django.core.validators import EmailValidator
 from django.contrib.auth.models import PermissionsMixin
 
+from django.contrib.auth.models import AbstractUser
+
+
 '''
 class User(models.Model):
     first_name = models.CharField(max_length=50 , blank=True , null=True)
@@ -61,9 +64,11 @@ class UserManager(BaseUserManager):
         return self.create_user(email, password, **extra_fields)
     
     
-
-class User(AbstractBaseUser,PermissionsMixin):
-    birthday = models.DateField(_("birthday"), blank=True , null = True)
+'''
+class User(AbstractBaseUser , PermissionsMixin):
+    year = models.IntegerField(_("year") ,blank=True , null = True )
+    month =models.IntegerField(_("month") ,blank=True , null = True )
+    day =models.IntegerField(_("day"),blank=True , null = True )
     phone_number = models.CharField(_("phone_number"),max_length=11,blank=True , null = True)
     first_name = models.CharField(max_length=50 ,blank=True , null = True)
     last_name = models.CharField(max_length=50,blank=True , null = True)
@@ -79,3 +84,12 @@ class User(AbstractBaseUser,PermissionsMixin):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
     objects = UserManager()
+'''
+
+class User(AbstractUser):
+    year = models.IntegerField(_("year") ,blank=True , null = True )
+    month =models.IntegerField(_("month") ,blank=True , null = True )
+    day =models.IntegerField(_("day"),blank=True , null = True )
+    phone_number = models.CharField(_("phone_number"),max_length=11,blank=True , null = True)
+    updated_date = models.DateTimeField(auto_now=True)
+    rePassword = models.CharField(_("password"), max_length=128 ,blank=True , null = True)

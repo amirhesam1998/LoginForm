@@ -13,7 +13,7 @@ class RegistrationSerializer(serializers.ModelSerializer):
     rePassword = serializers.CharField(max_length=255)
     class Meta:
         model = User
-        fields = ["email" , "password" , "rePassword"]
+        fields = "__all__"
         
     def validate(self, attrs):
         if attrs.get("password") != attrs.get("rePassword"):
