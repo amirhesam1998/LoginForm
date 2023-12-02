@@ -5,7 +5,8 @@ from django.shortcuts import get_object_or_404
 from rest_framework import status
 from django.contrib.auth import get_user_model
 from .models import User
-
+from rest_framework.views import APIView
+from rest_framework.authtoken.models import Token
 from rest_framework import viewsets
 # @method_decorator(csrf_exempt, name='dispatch')
 # class UserCreateView(View):
@@ -59,3 +60,18 @@ class RegistrationApiView(generics.GenericAPIView):
         print(serializer.errors)
         return Response(serializer.errors , status=status.HTTP_400_BAD_REQUEST)
 
+class UserLoginAPIView(APIView):
+    def post(self, request, format=None):
+        username = request.data.get('username')
+        password = request.data.get('password')
+        
+        if username is None or password is None:
+            return Response({'error': 'لطفا نام کاربری و رمز عبور را وارد کنید.'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        user = User.objects.filter(username=username).first()
+        
+        if user is None or not user.check_password(password):
+            return Response({'error': 'اطلاعات ورود نامعتبر است.'}, status=status.HTTP_401_UNAUTHORIZED)
+        
+        token, created = Token.objects.get_or_create(user=user)
+        return Response({'token': token.key}, status=status.HTTP_200_OK)
