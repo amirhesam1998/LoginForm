@@ -31,13 +31,14 @@ export default function Register  (){
         setcurred(true)
       } catch (error) {
         setErrorOccurred(true)
+        
       }
     };
 
     return (
       <FormGroup>
-        {errorOccurred && <AlertColors color="red" text="A success alert for showing message." />}
         {curred && <AlertColors color="green" text="An error alert for showing message." />}
+        {errorOccurred && <AlertColors color="red" text="A success alert for showing message." />}
         <Form>
           <input type="text" name="first_name" value={formData.first_name} onChange={handleChange} className="form-control hover" placeholder="First Name" />
           <input type="text" name="last_name" value={formData.last_name} onChange={handleChange} className="form-control" placeholder="Last Name" />
