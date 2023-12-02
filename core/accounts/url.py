@@ -1,8 +1,9 @@
 from django.contrib import admin
-from django.urls import path , include
-from .views import  UserCreateView 
+from django.urls import path 
+from .views import  RegistrationApiView , UserListApiView
 
 urlpatterns = [
-    # path('api/<int:pk>/' , ArticleDetailView.as_view() , name="show-user"),
-    path('api/registry/' , UserCreateView.as_view() , name="user-registry"),
+    # path('api/<int:pk>/' , UserDataView.as_view() , name="show-user"),
+    path('api/registry/' , RegistrationApiView.as_view() , name="user-registry"),
+    path('api/users/' , UserListApiView.as_view() , name="user-lists"),
 ]
