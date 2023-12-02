@@ -93,3 +93,6 @@ class User(AbstractUser):
     phone_number = models.CharField(_("phone_number"),max_length=11,blank=True , null = True)
     updated_date = models.DateTimeField(auto_now=True)
     rePassword = models.CharField(_("password"), max_length=128 ,blank=True , null = True)
+    is_verified = models.BooleanField(
+        default=False
+    ) 
