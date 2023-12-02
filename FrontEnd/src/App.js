@@ -1,13 +1,12 @@
 import React from 'react';
 import './App.css';
-import Form from './Component/Form/Form';
+import Register from './Component/Page/Register';
 
 
 function App() {
   return (
     <div>
-      <Form />
-
+      <Register />
     </div>
   );
 }
