@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import './Register.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
-import AlertColors from '../Alert/AlertColors'
-import FormData from '../../data/FormData/FormData.json'
-import FormGroup from '../Form/FormGroup'
-import Form from "../Form/Form";
+import AlertColors from '../../Alert/AlertColors'
+import FormData from '../../../data/FormData/FormData.json'
+import FormGroup from '../../Form/FormGroup'
+import Form from "../../Form/Form";
+import { Link } from 'react-router-dom';
 
 export default function Register  (){
     const [formData, setFormData] = useState(FormData);
@@ -59,7 +60,7 @@ export default function Register  (){
           <input type="password" name="password" value={formData.password} onChange={handleChange} className="form-control" placeholder="Password" />
           <input type="password" name="rePassword" value={formData.rePassword} onChange={handleChange} className="form-control" placeholder="rePassword" />
           <button onClick={handleSubmit} type="submit" className="btn btn-primary">Register</button>
-          <button type="button" className="btn btn-warning m-3">Login</button>
+          <Link to="/" className="btn btn-warning m-3">Login</Link>
         </Form>
       </FormGroup>
       )

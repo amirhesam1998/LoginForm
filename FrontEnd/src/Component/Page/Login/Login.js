@@ -1,8 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import FormData from '../../data/FormData/FormData.json'
-import Form from "../Form/Form";
-import FormGroup from "../Form/FormGroup";
+import FormData from '../../../data/FormData/FormData.json'
+import Form from "../../Form/Form";
+import FormGroup from "../../Form/FormGroup";
+import { Link } from 'react-router-dom';
 //import AlertColors from '../Alert/AlertColors'
 
 export default function Login (){
@@ -23,8 +24,8 @@ export default function Login (){
             <Form>
                 <input type="text" name="username" value={data.username} onChange={handleChange} className="form-control" placeholder="Username" />
                 <input type="password" name="password" value={data.password} onChange={handleChange} className="form-control" placeholder="Password" />
-                <button type="button" className="btn btn-warning m-3">Login</button>
-                <button  type="submit" className="btn btn-primary">Register</button>
+                <button type="button" className="btn btn-warning m-3" >Login</button>
+                <Link to="/register" className="btn btn-primary">Register</Link>
             </Form>
         </FormGroup>
     )
