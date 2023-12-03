@@ -24,7 +24,7 @@ export default function Register  (){
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        await axios.post('/api/registry/', formData, {
+        await axios.post('http://127.0.0.1:8000/api/registry/', formData, {
           headers: {
             'Content-Type': 'application/json'
           }

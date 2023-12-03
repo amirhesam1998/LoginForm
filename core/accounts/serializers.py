@@ -5,7 +5,7 @@ from django.core import exceptions
 from django.contrib.auth import authenticate
 from django.utils.translation import (
     gettext_lazy as _)
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+# from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
     
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -42,7 +42,7 @@ class CustomAuthTokenSerializer(serializers.Serializer):
         trim_whitespace=False,
         write_only=True,
     )
-    token = serializers.CharField(label=_("Token"), read_only=True)
+    token = serializers.CharField(label=_("token"), read_only=True)
 
     def validate(self, attrs):
         username = attrs.get("username")
@@ -70,11 +70,11 @@ class CustomAuthTokenSerializer(serializers.Serializer):
         attrs["user"] = user
         return attrs
     
-class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
-    def validate(self, attrs):
-        validated_data = super().validate(attrs)
-        if not self.user.is_verified:
-            raise serializers.ValidationError({"detail": "user is not verified"})
-        validated_data["username"] = self.user.username
-        validated_data["id"] = self.user.id
-        return validated_data
+# class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+#     def validate(self, attrs):
+#         validated_data = super().validate(attrs)
+#         if not self.user.is_verified:
+#             raise serializers.ValidationError({"detail": "user is not verified"})
+#         validated_data["username"] = self.user.username
+#         validated_data["id"] = self.user.id
+#         return validated_data
