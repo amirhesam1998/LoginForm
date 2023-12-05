@@ -16,7 +16,7 @@ export default function Form({ children, onSubmit, layout }) {
           <div className="col">{children}</div>
         </div>
       ) : (
-        <div className="form-group">{children}</div>
+        <div className="form-group ">{children}</div>
       )}
     </form>
   );

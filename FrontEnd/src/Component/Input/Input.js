@@ -11,16 +11,16 @@ export default function RenderInputs ()  {
           ...formData,
           [name]: value,
         });
-      };
+      };      
     return Object.keys(formData).map((fieldName) => (
       <input
         key={fieldName}
-        type="text"
+        type={fieldName.includes("password") ? "password" : fieldName.includes("username") ? "username" : fieldName.includes("rePassword") ? "password":fieldName.includes("email") ? "email":'text'}
         name={fieldName}
         value={formData[fieldName]}
         onChange={handleChange}
-        className="form-control"
-        placeholder={fieldName.charAt(0).toUpperCase() + fieldName.slice(1).replace(/_/g, ' ')}
+        className="form-control m-1"
+        placeholder={fieldName.charAt(0).toUpperCase() + fieldName.slice(1).replace(/_/, ' ')}
       />
     ));
         
