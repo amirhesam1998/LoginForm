@@ -27,12 +27,12 @@ export default function Login (){
         e.preventDefault()
         try {
              await axios.post(
-              '/api/login/',
+              'http://127.0.0.1:8000/api/login/',
               data,
               {
                 headers: {
                   'Content-Type': 'application/json',
-                  Authorization: `Token ${Token}`,
+                  'Authorization': `Token ${Token}`,
                 },
               }
             );
