@@ -9,7 +9,7 @@ import AuthContex from "../../../Context/Authentication";
 
 const LOGIN_URL = '/login/'
 export default function Login (){
-  const errRef = useRef('')
+  //const errRef = useRef('')
   const {setAuth} = useContext(AuthContex)
     const [user, setUser] = useState(FormData.username)
     const [pass, setPass] = useState(FormData.password)
@@ -51,7 +51,6 @@ export default function Login (){
               }else if(error.response?.status === 401) {
                 setError('unauthorized')
               }
-              errRef.current.focus()
             }
         };
       
