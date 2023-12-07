@@ -4,10 +4,10 @@ import Register from './Component/Page/Register/Register';
 import Login from './Component/Page/Login/Login';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Users from './Component/Page/User/Users';
+import AuthProvider from './Context/Authentication';
 function App() {
   return (
-    <div>
-<div>
+    //<AuthProvider>
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />
@@ -15,8 +15,7 @@ function App() {
           <Route path="/users" element={<Users />} />
         </Routes>
       </Router>
-    </div>
-    </div>
+    //</AuthProvider>
   );
 }
 
