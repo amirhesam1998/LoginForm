@@ -11,7 +11,8 @@ export default function RenderInputs ()  {
           ...formData,
           [name]: value,
         });
-      };      
+      };
+      console.log(handleChange.setFormData)      
     return Object.keys(formData).map((fieldName) => (
       <input
         key={fieldName}

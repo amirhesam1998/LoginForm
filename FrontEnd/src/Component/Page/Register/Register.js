@@ -1,13 +1,15 @@
 import React, { useRef, useState } from "react";
 import './Register.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios';
+import axios from '../../../API/Axios';
 import AlertColors from '../../Alert/AlertColors'
 import FormData from '../../../data/FormData/FormData.json'
 import FormGroup from '../../Form/FormGroup'
 import Form from "../../Form/Form";
 import { Link } from 'react-router-dom';
 import RenderInputs from "../../Input/Input";
+
+const REGISTER_URL = '/registry/' 
 
 export default function Register  (){
     const formData = useRef(FormData)
@@ -17,7 +19,7 @@ export default function Register  (){
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        await axios.post('http://127.0.0.1:8000/api/registry/', formData, {
+        await axios.post(REGISTER_URL, formData, {
           headers: {
             'Content-Type': 'application/json'
           }
