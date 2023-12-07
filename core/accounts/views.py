@@ -42,11 +42,8 @@ class UserLoginToken(ObtainAuthToken):
             data=request.data, context={"request": request}
         )
         serializer.is_valid(raise_exception=True)
-        print(serializer)
         user = serializer.validated_data["user"]
-        print(user)
         token, created = Token.objects.get_or_create(user=user)
-        print(token)
         return Response({"token": token.key})
 
 class UserLogoutToken(APIView):
