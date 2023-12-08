@@ -3,14 +3,13 @@ import FormData from '../../../data/FormData/FormData.json'
 import Form from "../../Form/Form";
 import FormGroup from "../../Form/FormGroup";
 import { Link, useNavigate } from 'react-router-dom';
-//import { useHistory } from 'history';
 import axios from '../../../API/Axios';
-import AuthContex from "../../../Context/Authentication";
+import AuthContext from '../../../Context/Authentication';
 
 const LOGIN_URL = '/login/'
 export default function Login (){
   //const errRef = useRef('')
-  const {setAuth} = useContext(AuthContex)
+  const {setAuth} = useContext(AuthContext)
     const [user, setUser] = useState(FormData.username)
     const [pass, setPass] = useState(FormData.password)
     const [success,setSuccess]= useState(false)
@@ -26,34 +25,40 @@ export default function Login (){
         setPass(value);
       }
     }
-    const handleSubmit = async(e)=>{
-        e.preventDefault()
-          try {
-                const response = await axios.post(LOGIN_URL,JSON.stringify({user, pass}),
-                {
-                  headers: {'Content-Type': 'application/json'},
-                    withCredentials: true
-                }
-              );
-              console.log(JSON.stringify(response?.data))
-              const accessToken = response?.data?.accessToken;
-              const roles = response?.data?.roles;
-                setAuth({user,pass,roles,accessToken})
-                setUser('')
-                setPass('')
-                setSuccess(true)
-                navigate('/users');
-            } catch (error) {
-              if(!error.response){
-                setError('no server response')
-              }else if(error.response?.status === 400) {
-                setError('password or username incureced')
-              }else if(error.response?.status === 401) {
-                setError('unauthorized')
-              }
-            }
-        };
-      
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        const response = await axios.post(
+          LOGIN_URL,
+          JSON.stringify({ user, pass }),
+          {
+            headers: { 'Content-Type': 'application/json' },
+            withCredentials: true,
+          }
+        );
+    
+        const accessToken = response?.data?.accessToken;
+        const roles = response?.data?.roles;
+    
+        // Store the access token securely (e.g., in cookies or local storage)
+        // Update your setAuth function to handle token storage
+    
+        setAuth({ user, pass, roles, accessToken });
+        setUser('');
+        setPass('');
+        setSuccess(true);
+    
+        // Redirect to the desired page upon successful login
+        navigate('/users');
+      } catch (error) {
+        if (!error.response) {
+          setError('No server response');
+        } else if (error.response?.status === 400 || error.response?.status === 401) {
+          setError('Invalid credentials');
+        }
+        // Handle other error cases as needed
+      }
+    };
     return (
         <FormGroup>
             <Form>

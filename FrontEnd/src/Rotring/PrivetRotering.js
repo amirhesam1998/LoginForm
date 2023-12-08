@@ -1,6 +1,7 @@
+// PrivetRotering.js
 import React, { useContext } from 'react';
 import { Route, Navigate } from 'react-router-dom';
-import AuthContext from '../../../Context/Authentication';
+import { AuthContext } from '../Context/Authentication';
 
 const PrivateRoute = ({ element, ...rest }) => {
   const { auth } = useContext(AuthContext);
