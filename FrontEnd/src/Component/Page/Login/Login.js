@@ -3,7 +3,7 @@ import FormData from '../../../data/FormData/FormData.json'
 import Form from "../../Form/Form";
 import FormGroup from "../../Form/FormGroup";
 import { Link, useNavigate } from 'react-router-dom';
-import axios from '../../../API/Axios';
+import Axios from '../../../API/Axios';
 import { AuthContext } from '../../../Context/Authentication';
 
 const LOGIN_URL = '/login/'
@@ -28,7 +28,7 @@ export default function Login (){
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        const response = await axios.post(
+        const response = await Axios.post(
           LOGIN_URL,
           JSON.stringify({ user, pass }),
           {
@@ -39,16 +39,12 @@ export default function Login (){
     
         const accessToken = response?.data?.accessToken;
         const roles = response?.data?.roles;
-    
-        // Store the access token securely (e.g., in cookies or local storage)
-        // Update your setAuth function to handle token storage
-    
+
         setAuth({ user, pass, roles, accessToken });
         setUser('');
         setPass('');
         setSuccess(true);
     
-        // Redirect to the desired page upon successful login
         navigate('/users');
       } catch (error) {
         if (!error.response) {
@@ -62,6 +58,7 @@ export default function Login (){
     return (
         <FormGroup>
             <Form>
+              <p>{error}</p>
                 <input type="text" name="username" value={user} onChange={handleChange} className="form-control" placeholder="Username" />
                 <input type="password" name="password" value={pass} onChange={handleChange} className="form-control" placeholder="Password" />
                 <button type="button" onClick={handleSubmit} className="btn btn-warning m-3" >Login</button>
