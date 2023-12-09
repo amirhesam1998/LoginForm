@@ -6,7 +6,7 @@ import { AuthContext } from '../Context/Authentication';
 const PrivateRoute = ({ element, ...rest }) => {
   const { auth } = useContext(AuthContext);
 
-  return auth.user ? (
+  return auth.username ? ( // Changed from auth.user to auth.username
     <Route {...rest} element={element} />
   ) : (
     <Navigate to="/" replace state={{ from: rest.location }} />

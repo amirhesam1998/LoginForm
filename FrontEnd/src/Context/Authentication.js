@@ -6,7 +6,7 @@ export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({ username: null, token: null });
 
   const login = (username, token) => {
-    setAuth({ username, token });
+    setAuth({ username, token }); // Changed from { user, token } to { username, token }
   };
 
   const logout = () => {
