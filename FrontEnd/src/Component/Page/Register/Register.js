@@ -25,7 +25,7 @@ export default function Register  (){
       e.preventDefault();
       console.log("Form Data:", formData);
       try {
-        await Axios.post(REGISTER_URL, FormData, {
+        await Axios.post(REGISTER_URL, formData, {
           headers: {
             'Content-Type': 'application/json',
           },
