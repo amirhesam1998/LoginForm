@@ -40,6 +40,7 @@ export default function Login (){
 
         //console.log({ username,token });
         setAuth({ username, token })
+        console.log('Token set in AuthContext:', token);
         setUsername('');
         setPassword('');
         
