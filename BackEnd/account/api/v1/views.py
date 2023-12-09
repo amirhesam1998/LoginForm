@@ -9,7 +9,6 @@ class UserRegistryApiView(generics.GenericAPIView):
     serializer_class = RegistrationSerializer
 
     def post(self, request, *args, **kwargs):
-        print(data=request.data)
         serializer = RegistrationSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
