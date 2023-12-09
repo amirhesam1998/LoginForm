@@ -39,7 +39,9 @@ export default function Login (){
         const token = response?.data?.token;
         //const roles = response?.data?.roles;
 
+        
         console.log({ username, password, token });
+        setAuth({ username, token })
         setUsername('');
         setPassword('');
     
