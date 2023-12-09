@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     #3rid party apps
     'rest_framework',
     "corsheaders",
+    'rest_framework.authtoken',
+    "drf_yasg",    
 ]
 
 MIDDLEWARE = [
@@ -139,3 +141,13 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = 'account.CustomUser'
 
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        'rest_framework.authentication.BasicAuthentication',
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
