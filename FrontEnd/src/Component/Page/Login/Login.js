@@ -47,6 +47,7 @@ export default function Login (){
         navigate('/users');
 
       } catch (error) {
+          console.error('Login error:', error);
         if (!error.response) {
           setError('No server response');
         } else if (error.response?.status === 400 || error.response?.status === 401) {
