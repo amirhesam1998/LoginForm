@@ -36,7 +36,7 @@ export default function Login (){
           }
         );
     
-        const token= response?.data?.token;
+        const token= response?.localStorage.getItem('token')
         //const roles = response?.data?.roles;
 
         console.log(setAuth({ username, password, token }));
