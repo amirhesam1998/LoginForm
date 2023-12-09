@@ -36,10 +36,10 @@ export default function Login (){
           }
         );
     
-        const accessToken = response?.data?.accessToken;
-        const roles = response?.data?.roles;
+        const token= response?.data?.token;
+        //const roles = response?.data?.roles;
 
-        setAuth({ username, password, roles, accessToken });
+        console.log(setAuth({ username, password, token }));
         setUsername('');
         setPassword('');
     
