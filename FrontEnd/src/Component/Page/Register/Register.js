@@ -24,7 +24,7 @@ export default function Register  (){
       e.preventDefault();
       console.log("Form Data:", formData);
       try {
-        await axios.post('http://127.0.0.1:8000/api/registry/', FormData, {
+        await axios.post('http://127.0.0.1:8000/api/v1/registry/', FormData, {
           headers: {
             'Content-Type': 'application/json'
           }
