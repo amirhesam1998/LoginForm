@@ -43,7 +43,9 @@ export default function Login (){
         setUsername('');
         setPassword('');
         
+        console.log('Navigating to /users');
         navigate('/users');
+
       } catch (error) {
         if (!error.response) {
           setError('No server response');
