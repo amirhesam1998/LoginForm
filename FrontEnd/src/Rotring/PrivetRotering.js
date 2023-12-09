@@ -9,7 +9,7 @@ const PrivateRoute = ({ element, ...rest }) => {
   return auth.user ? (
     <Route {...rest} element={element} />
   ) : (
-    <Navigate to="/login" replace state={{ from: rest.location }} />
+    <Navigate to="/" replace state={{ from: rest.location }} />
   );
 };
 

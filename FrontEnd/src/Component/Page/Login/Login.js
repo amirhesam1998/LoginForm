@@ -4,7 +4,7 @@ import Form from "../../Form/Form";
 import FormGroup from "../../Form/FormGroup";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from '../../../API/Axios';
-import AuthContext from '../../../Context/Authentication';
+import { AuthContext } from '../../../Context/Authentication';
 
 const LOGIN_URL = '/login/'
 export default function Login (){
