@@ -1,13 +1,14 @@
 import React, {useState } from "react";
 import './Register.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from "axios";
+import Axios from '../../../API/Axios'
 import AlertColors from '../../Alert/AlertColors'
 import FormData from '../../../data/FormData/FormData.json'
 import FormGroup from '../../Form/FormGroup'
 import Form from "../../Form/Form";
 import { Link } from 'react-router-dom';
 
+const REGISTER_URL = '/registry/'
 export default function Register  (){
     const [formData, setFormData] = useState(FormData);
     const [errorOccurred, setErrorOccurred] = useState(false);
@@ -24,7 +25,7 @@ export default function Register  (){
       e.preventDefault();
       console.log("Form Data:", formData);
       try {
-        await axios.post('http://127.0.0.1:8000/api/v1/registry/', FormData, {
+        await Axios.post(REGISTER_URL, FormData, {
           headers: {
             'Content-Type': 'application/json'
           }
