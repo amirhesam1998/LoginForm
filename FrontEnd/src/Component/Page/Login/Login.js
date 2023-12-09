@@ -29,7 +29,7 @@ export default function Login (){
       try {
         const response = await Axios.post(
           LOGIN_URL,
-          JSON.stringify({ user, pass }),
+          { user, pass },
           {
             headers: { 'Content-Type': 'application/json' },
             withCredentials: true,
