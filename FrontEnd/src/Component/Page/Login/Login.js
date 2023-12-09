@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Axios from '../../../API/Axios';
 import { AuthContext } from '../../../Context/Authentication';
 
-const LOGIN_URL = '/login/'
+const LOGIN_URL = '/token/login/'
 export default function Login (){
   //const errRef = useRef('')
   const {setAuth} = useContext(AuthContext)
