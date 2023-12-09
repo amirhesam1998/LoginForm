@@ -39,7 +39,7 @@ export default function Login (){
         const token= response?.localStorage.getItem('token')
         //const roles = response?.data?.roles;
 
-        console.log(setAuth({ username, password, token }));
+        console.log({ username, password, token });
         setUsername('');
         setPassword('');
     
@@ -52,7 +52,6 @@ export default function Login (){
         }
         // Handle other error cases as needed
       }
-      console.log({username,password})
     };
     return (
         <FormGroup>
