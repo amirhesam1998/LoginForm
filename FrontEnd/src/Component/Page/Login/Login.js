@@ -9,7 +9,7 @@ import { AuthContext } from '../../../Context/Authentication';
 const LOGIN_URL = '/token/login/'
 export default function Login (){
   //const errRef = useRef('')
-  const {setAuth} = useContext(AuthContext)
+    const {setAuth} = useContext(AuthContext)
     const [username, setUsername] = useState(FormData.username)
     const [password, setPassword] = useState(FormData.password)
     const [error, setError] = useState(null);
@@ -38,12 +38,12 @@ export default function Login (){
     
         const token = response?.data?.token;
 
-        console.log({ username,token });
+        //console.log({ username,token });
         setAuth({ username, token })
         setUsername('');
         setPassword('');
         
-        console.log("Response:", response.data);
+        //console.log("Response:", response.data);
         navigate('/users');
 
       } catch (error) {

@@ -6,6 +6,8 @@ import { AuthContext } from '../Context/Authentication';
 const PrivateRoute = ({ element, ...rest }) => {
   const { auth } = useContext(AuthContext);
 
+  console.log('Auth object in PrivateRoute:', auth);
+
   return auth.token ? (
     <Route {...rest} element={element} />
   ) : (
