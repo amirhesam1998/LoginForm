@@ -37,12 +37,11 @@ export default function Login (){
         );
     
         const token = response?.data?.token;
-        
+
         console.log({ username, password, token });
         setAuth({ username, token })
         setUsername('');
         setPassword('');
-        console.log({ username, password, token });
         
         navigate('/users');
       } catch (error) {
@@ -51,7 +50,6 @@ export default function Login (){
         } else if (error.response?.status === 400 || error.response?.status === 401) {
           setError('Invalid credentials');
         }
-        // Handle other error cases as needed
       }
     };
     return (
