@@ -10,8 +10,8 @@ const LOGIN_URL = '/token/login/'
 export default function Login (){
   //const errRef = useRef('')
   const {setAuth} = useContext(AuthContext)
-    const [user, setUser] = useState(FormData.username)
-    const [pass, setPass] = useState(FormData.password)
+    const [username, setUsername] = useState(FormData.username)
+    const [password, setPassword] = useState(FormData.password)
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
@@ -19,9 +19,9 @@ export default function Login (){
     const handleChange = (e) => {
       const { name, value } = e.target;
       if (name === 'username') {
-        setUser(value);
+        setUsername(value);
       } else if (name === 'password') {
-        setPass(value);
+        setPassword(value);
       }
     }
     const handleSubmit = async (e) => {
@@ -29,7 +29,7 @@ export default function Login (){
       try {
         const response = await Axios.post(
           LOGIN_URL,
-          { user, pass },
+          { username, password },
           {
             headers: { 'Content-Type': 'application/json' },
             withCredentials: true,
@@ -39,9 +39,9 @@ export default function Login (){
         const accessToken = response?.data?.accessToken;
         const roles = response?.data?.roles;
 
-        setAuth({ user, pass, roles, accessToken });
-        setUser('');
-        setPass('');
+        setAuth({ username, password, roles, accessToken });
+        setUsername('');
+        setPassword('');
     
         navigate('/users');
       } catch (error) {
@@ -52,13 +52,14 @@ export default function Login (){
         }
         // Handle other error cases as needed
       }
+      console.log({username,password})
     };
     return (
         <FormGroup>
             <Form>
               <p>{error}</p>
-                <input type="text" name="username" value={user} onChange={handleChange} className="form-control" placeholder="Username" />
-                <input type="password" name="password" value={pass} onChange={handleChange} className="form-control" placeholder="Password" />
+                <input type="text" name="username" value={username} onChange={handleChange} className="form-control" placeholder="Username" />
+                <input type="password" name="password" value={password} onChange={handleChange} className="form-control" placeholder="Password" />
                 <button type="button" onClick={handleSubmit} className="btn btn-warning m-3" >Login</button>
                 <Link to="/register" className="btn btn-primary">Register</Link>
             </Form>
