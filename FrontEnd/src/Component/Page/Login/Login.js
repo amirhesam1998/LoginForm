@@ -43,7 +43,7 @@ export default function Login (){
         setUsername('');
         setPassword('');
         
-        console.log('Navigating to /users');
+        console.log("Response:", response.data);
         navigate('/users');
 
       } catch (error) {
