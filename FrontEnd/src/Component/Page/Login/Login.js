@@ -37,11 +37,14 @@ export default function Login (){
         );
     
         const token = response?.data?.token;
-        setAuth({ username, token })
-        console.log('Token set in AuthContext:', token);
+
+        setAuth({ username, token }, () => {
+          console.log('Token set in AuthContext:', token);
+        });
         setUsername('');
         setPassword('');
         
+        //console.log("Response:", response.data);
         navigate('/users');
 
       } catch (error) {
