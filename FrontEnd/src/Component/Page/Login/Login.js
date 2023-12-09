@@ -12,7 +12,6 @@ export default function Login (){
   const {setAuth} = useContext(AuthContext)
     const [user, setUser] = useState(FormData.username)
     const [pass, setPass] = useState(FormData.password)
-    const [success,setSuccess]= useState(false)
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
@@ -43,7 +42,6 @@ export default function Login (){
         setAuth({ user, pass, roles, accessToken });
         setUser('');
         setPass('');
-        setSuccess(true);
     
         navigate('/users');
       } catch (error) {
