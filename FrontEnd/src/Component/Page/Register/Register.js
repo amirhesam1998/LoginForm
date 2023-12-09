@@ -23,18 +23,18 @@ export default function Register  (){
     };
     const handleSubmit = async (e) => {
       e.preventDefault();
-      console.log("Form Data:", formData);
       try {
         await Axios.post(REGISTER_URL, formData, {
           headers: {
             'Content-Type': 'application/json',
           },
-          withCredentials: true
+          withCredentials: true,
         });
         setcurred(true)
       } catch (error) {
         setErrorOccurred(true)
         
+        console.log("Form Data:", formData);
       }
     };
     return (
