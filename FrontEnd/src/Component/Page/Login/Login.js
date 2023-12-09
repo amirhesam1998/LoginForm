@@ -42,7 +42,8 @@ export default function Login (){
         setAuth({ username, token })
         setUsername('');
         setPassword('');
-    
+        console.log({ username, password, token });
+        
         navigate('/users');
       } catch (error) {
         if (!error.response) {
