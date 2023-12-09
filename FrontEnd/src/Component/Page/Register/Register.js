@@ -27,8 +27,9 @@ export default function Register  (){
       try {
         await Axios.post(REGISTER_URL, FormData, {
           headers: {
-            'Content-Type': 'application/json'
-          }
+            'Content-Type': 'application/json',
+          },
+          withCredentials: true
         });
         setcurred(true)
       } catch (error) {
