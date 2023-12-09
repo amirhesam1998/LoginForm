@@ -1,7 +1,7 @@
 import React, {useState } from "react";
 import './Register.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios';
+import axios from "axios";
 import AlertColors from '../../Alert/AlertColors'
 import FormData from '../../../data/FormData/FormData.json'
 import FormGroup from '../../Form/FormGroup'
