@@ -1,18 +1,15 @@
-// PrivetRotering.js
 import React, { useContext } from 'react';
-import { Route, Navigate } from 'react-router-dom';
+import { Navigate, Outlet} from 'react-router-dom';
 import { AuthContext } from '../Context/Authentication';
+//import Users from '../Component/Page/User/Users';
 
-const PrivateRoute = ({ element, ...rest }) => {
+const PrivateRoute = () =>{
   const { auth } = useContext(AuthContext);
 
-  console.log('Auth object in PrivateRoute:', auth);
-
   return auth.token ? (
-    <Route {...rest} element={element} />
+    <Outlet />
   ) : (
-    <Navigate to="/" replace state={{ from: rest.location }} />
+      <Navigate to="/"/>
   );
-};
-
+}
 export default PrivateRoute;

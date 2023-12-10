@@ -1,4 +1,3 @@
-// Routering.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Register from '../Component/Page/Register/Register';
@@ -12,9 +11,11 @@ export default function Routering() {
     <AuthProvider>
       <Router>
         <Routes>
+          <Route path="/register" element={<Register />} /> 
           <Route path="/" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/users" element={<PrivateRoute element={<Users />} />} />
+          <Route element={<PrivateRoute/>}>
+            <Route path='/users' element = {<Users/>} />  
+          </Route>   
         </Routes>
       </Router>
     </AuthProvider>
