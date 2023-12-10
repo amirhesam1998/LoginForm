@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,useRef } from "react";
 import FormData from '../../../data/FormData/FormData.json'
 import Form from "../../Form/Form";
 import FormGroup from "../../Form/FormGroup";
@@ -10,11 +10,16 @@ const LOGIN_URL = '/token/login/'
 
 export default function Login() {
   const { setAuth } = useContext(AuthContext);
+  let token = useRef('')
+  let first_name = useRef('')
   const [username, setUsername] = useState(FormData.username);
   const [password, setPassword] = useState(FormData.password);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
+
+
+//for changeing input 
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === 'username') {
@@ -23,6 +28,9 @@ export default function Login() {
       setPassword(value);
     }
   }
+
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,9 +44,10 @@ export default function Login() {
         }
       );
 
-      const token = response?.data?.token;
+      token = response?.data?.token;
+      first_name = response?.data?.first_name;
 
-      setAuth({ username, token })
+      setAuth({ username, token ,first_name})
       setUsername('');
       setPassword('');
       navigate('/users');
@@ -52,6 +61,8 @@ export default function Login() {
     }
   };
 
+
+  
   return (
     <FormGroup>
       <Form>
