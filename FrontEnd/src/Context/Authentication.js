@@ -1,17 +1,26 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
-  const [auth, setAuth] = useState({ username: null, token: null });
+  const storedToken = localStorage.getItem('token');
+  const [auth, setAuth] = useState({
+    username: null,
+    token: storedToken,
+    first_name: null,
+  });
+  
+  //for stay in users page untill user logout
+  useEffect(() => {
+    localStorage.setItem('token', auth.token);
+  }, [auth.token]);
 
-  const login = (username, token ,first_name) => {
-
-    setAuth({ username, token,first_name });
+  const login = (username, token, first_name) => {
+    setAuth({ username, token, first_name });
   };
 
   const logout = () => {
-    setAuth({ username: null, token: null, first_name :null});
+    setAuth({ username: null, token: '', first_name: null });
   };
 
   return (

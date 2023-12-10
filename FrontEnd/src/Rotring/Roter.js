@@ -5,6 +5,7 @@ import Login from '../Component/Page/Login/Login';
 import Users from '../Component/Page/User/Users';
 import { AuthProvider } from '../Context/Authentication';
 import PrivateRoute from './PrivetRotering';
+import Home from "../Component/Page/Home/Home"
 
 export default function Routering() {
   return (
@@ -12,7 +13,8 @@ export default function Routering() {
       <Router>
         <Routes>
           <Route path="/register" element={<Register />} /> 
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
           <Route element={<PrivateRoute/>}>
             <Route path='/users' element = {<Users/>} />  
           </Route>   
