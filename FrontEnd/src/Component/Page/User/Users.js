@@ -9,6 +9,7 @@ export default function Users(){
 
     const handleLogout = () => {
         logout();
+        
     };
 
     return (
