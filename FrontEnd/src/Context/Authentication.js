@@ -4,15 +4,17 @@ export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
   const storedToken = localStorage.getItem('token');
+  const storedName = localStorage.getItem('first_name')
   const [auth, setAuth] = useState({
-    username: null,
+    username: '',
     token: storedToken,
-    first_name: null,
+    first_name: storedName,
   });
   
   //for stay in users page untill user logout
   useEffect(() => {
     localStorage.setItem('token', auth.token);
+    localStorage.setItem('first_name',auth.first_name)
   }, [auth.token]);
 
   const login = (username, token, first_name) => {
@@ -20,7 +22,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    setAuth({ username: null, token: '', first_name: null });
+    setAuth({ username: '', token: '', first_name: '' });
   };
 
   return (
