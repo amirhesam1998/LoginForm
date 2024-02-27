@@ -33,14 +33,14 @@ class CustomObtainAuthToken(ObtainAuthToken):
         user = serializer.validated_data["user"]
         print(user)
         token, created = Token.objects.get_or_create(user=user)
-        print(token.key)
+        print(token)
         return Response({"token": token.key, "user_id": user.pk, "username": user.username , 'first_name':user.first_name})
 
 
 
 class CustomDiscardAuthToken(APIView):
-    permission_classes = [IsAuthenticated]
 
     def post(self, request):
+        print(request.user)
         request.user.auth_token.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
